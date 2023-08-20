@@ -1,4 +1,4 @@
-resource "azurerm_container_registry" "this" {
+resource "azurerm_container_registry" "acr" {
   name                = var.registry_name
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -14,14 +14,16 @@ resource "azurerm_container_registry" "this" {
     }
   }
 
-  tags = var.tags
+  tags = merge(local.common_tags, tomap({
+    "Name" : local.project_name_prefix
+  }))
 }
 
-resource "azurerm_container_registry_webhook" "this" {
+resource "azurerm_container_registry_webhook" "webhook" {
   for_each = var.webhooks
 
   name                = each.value.name
-  registry_name       = azurerm_container_registry.this.name
+  registry_name       = azurerm_container_registry.acr.name
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -30,12 +32,14 @@ resource "azurerm_container_registry_webhook" "this" {
   status      = each.value.status
   scope       = each.value.scope
 
-  tags = var.tags
+  tags = merge(local.common_tags, tomap({
+    "Name" : local.project_name_prefix
+  }))
 }
 
-resource "azurerm_monitor_diagnostic_setting" "this" {
+resource "azurerm_monitor_diagnostic_setting" "diagnostic_setting" {
   name                           = var.diagnostic_setting_name
-  target_resource_id             = azurerm_container_registry.this.id
+  target_resource_id             = azurerm_container_registry.acr.id
   log_analytics_workspace_id     = var.log_analytics_workspace_id
   log_analytics_destination_type = var.log_analytics_destination_type
 

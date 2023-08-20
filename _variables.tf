@@ -76,8 +76,23 @@ variable "diagnostic_setting_name" {
   default     = "audit-logs"
 }
 
-variable "tags" {
-  description = "A mapping of tags to assign to the resources."
+variable "name" {
+  type        = string
+  description = "A string value to describe prefix of all the resources"
+  default     = ""
+}
+
+variable "default_tags" {
   type        = map(string)
+  description = "A map to add common tags to all the resources"
+  default = {
+    "Scope" : "ACR"
+    "CreatedBy" : "Terraform"
+  }
+}
+
+variable "common_tags" {
+  type        = map(string)
+  description = "A map to add common tags to all the resources"
   default     = {}
 }
