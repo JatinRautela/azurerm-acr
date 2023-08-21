@@ -31,13 +31,13 @@ module "acr" {
   log_analytics_workspace_id = module.log_analytics.workspace_id
 
   container_registry_config = {
-    name          = "${local.name_prefix}cr"
+    name = "${local.name_prefix}cr"
   }
 
   blob_backend_config = {
-    rg_name                          = azurerm_resource_group.rg.name
-    storage_account_name             = "saname"
-    container_name                   = "cname"
-    key                              = "key.backend"
+    rg_name              = azurerm_resource_group.rg.name
+    storage_account_name = "saname"
+    container_name       = "cname"
+    key                  = "key.backend"
   }
 }

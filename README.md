@@ -123,6 +123,36 @@ module "acr" {
 }
 ```
 
+
+## List of variables
+
+| Variable Name                              | Description                                                        | Type            | Required | Default Value       |
+|--------------------------------------------|--------------------------------------------------------------------|-----------------|----------|---------------------|
+| `registry_name`                            | The name of this Container Registry.                               | `string`        | Yes      |                     |
+| `location`                                 | The supported Azure location where the resources exist.            | `string`        | Yes      |                     |
+| `resource_group_name`                      | The name of the resource group in which to create the resources.   | `string`        | Yes      |                     |
+| `sku`                                      | The SKU tier for the Container Registry.                           | `string`        | No       | `"Basic"`           |
+| `admin_enabled`                            | Is admin enabled for this Container Registry?                     | `bool`          | No       | `false`             |
+| `georeplications`                          | A list of properties of the geo-replication blocks for this Container Registry. Only available for Premium SKU. | `list(object)` | No | `[]` |
+| `webhooks`                                 | A map of webhooks to create for this Container Registry.           | `map(object)`   | No       | `{}`                |
+| `log_analytics_workspace_id`               | The ID of the Log Analytics workspace to send diagnostics to.      | `string`        | Yes      |                     |
+| `log_analytics_destination_type`           | The type of log analytics destination to use for this Log Analytics Workspace. | `string` | No | `null`            |
+| `diagnostic_setting_enabled_log_categories`| A list of log categories to be enabled for this diagnostic setting.| `list(string)`  | No       | `["ContainerRegistryLoginEvents", "ContainerRegistryRepositoryEvents"]` |
+| `diagnostic_setting_name`                  | The name of this Diagnostic Setting.                               | `string`        | No       | `"audit-logs"`      |
+| `name`                                     | A string value to describe the prefix of all the resources.        | `string`        | No       | `""`                |
+| `default_tags`                             | A map to add common tags to all the resources.                     | `map(string)`   | No       | See below           |
+| `common_tags`                              | A map to add common tags to all the resources.                     | `map(string)`   | No       | `{}`                |
+
+Default value for `default_tags`:
+```hcl
+{
+  "Scope": "ACR",
+  "CreatedBy": "Terraform"
+}
+```
+
+Please note that the variables in the "Required" column that are marked "No" can be left empty if you don't want to provide a value for them.
+
 ## Note
 
 - The Terraform configuration may contain sensitive information like passwords or keys. Make sure to handle these securely using Terraform workspaces, environment variables, or other secure methods.

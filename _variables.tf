@@ -1,15 +1,19 @@
 variable "registry_name" {
   description = "The name of this Container Registry."
+  type        = string
+  default     = "registryname"
 }
 
 variable "location" {
   description = "The supported Azure location where the resources exist."
   type        = string
+  default     = "northeurope"
 }
 
 variable "resource_group_name" {
   description = "The name of the resource group in which to create the resources."
   type        = string
+  default     = "rgname"
 }
 
 variable "sku" {
