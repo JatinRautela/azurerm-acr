@@ -1,6 +1,33 @@
 # Terraform Module: Azure Container Registry
 
+[![Lint Status](https://github.com/tothenew/terraform-aws-template/workflows/Lint/badge.svg)](https://github.com/tothenew/terraform-aws-template/actions)
+[![LICENSE](https://img.shields.io/github/license/tothenew/terraform-aws-template)](https://github.com/tothenew/terraform-aws-template/blob/master/LICENSE)
+
 This Terraform module creates an Azure Container Registry (ACR) and sets up webhooks and diagnostic settings.
+
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [azurerm](#requirement\_terraform) | >= 3.39.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurerm_container_registry](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry) | resource |
+| [azurerm_monitor_diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting) | resource |
+| [azurerm_container_registry_webhook](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry_webhook) | resource |
 
 ## Resources Created
 
@@ -162,3 +189,11 @@ Please note that the variables in the "Required" column that are marked "No" can
 - Refer to the official Terraform documentation for more details on using modules and configuring Azure resources with Terraform.
 
 - For more information on the Azure Container Group resource, refer to the Azure provider documentation.
+
+## Authors
+
+Module managed by [TO THE NEW Pvt. Ltd.](https://github.com/tothenew)
+
+## License
+
+Apache 2 Licensed. See [LICENSE](https://github.com/tothenew/terraform-aws-template/blob/main/LICENSE) for full details.
